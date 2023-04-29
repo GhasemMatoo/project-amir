@@ -4,6 +4,16 @@ from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, Permi
 # Create your models here.
 
 
+class BaseModel(models.Model):
+    created_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
+    user_created_date = models.DateTimeField(auto_now_add=True)
+    user_update_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
 class CustomUserManager(BaseUserManager):
     """
     Custom user model manager where email is the unique
@@ -36,21 +46,18 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class CustomUser(BaseModel, AbstractBaseUser, PermissionsMixin):
     """
     Custom User Model
     """
-    email = models.EmailField(_('آدرس ایمیل'), max_length=255, unique=True)
-    username = models.CharField(_('نام کاربری '), max_length=50, unique=True)
-    persons_id = models.CharField(_('شماره پرسنلی'), max_length=11, unique=True)
-    first_name = models.CharField(_('نام'), max_length=50, null=True, blank=True)
-    last_name = models.CharField(_('نام خانوادگی'), max_length=50, null=True, blank=True)
-    is_staff = models.BooleanField(_('کارمندان'), default=False)
-    is_active = models.BooleanField(_('فعال'), default=False)
-    is_superuser = models.BooleanField(_('مدیر'), default=False)
+    email = models.EmailField(_('Email Address'), max_length=255, unique=True)
+    username = models.CharField(_('User Name'), max_length=50, unique=True)
+    first_name = models.CharField(_('First Name'), max_length=50, null=True, blank=True)
+    last_name = models.CharField(_('Last Name'), max_length=50, null=True, blank=True)
+    is_staff = models.BooleanField(_('Is Staff'), default=False)
+    is_active = models.BooleanField(_('Is Active'), default=False)
+    is_superuser = models.BooleanField(_('Super User'), default=False)
     is_verified = models.BooleanField(default=False)
-    created_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'first_name', 'last_name']
