@@ -33,3 +33,15 @@ class UserCreatSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop('Re_password')
         return CustomUser.objects.create(**validated_data)
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'email', 'first_name', 'last_name', 'username', 'created_date',
+                  'update_date', 'user_created_date', 'user_update_date'
+        ]
+
+    def update(self, instance, validated_data):
+        return super(UserUpdateSerializer, self).update(instance, validated_data)

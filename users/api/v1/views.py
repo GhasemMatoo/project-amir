@@ -1,7 +1,7 @@
-from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from users.models import CustomUser
-from .serializers import CustomUserSerializer
+from .serializers import CustomUserSerializer, UserCreatSerializer, UserUpdateSerializer
 
 
 class UserListViews(ListAPIView):
@@ -13,11 +13,20 @@ class UserListViews(ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
-class UserCreatViews(RetrieveUpdateAPIView):
+class UserCreatViews(CreateAPIView):
     """
-        View in list user object HTTP Methods GET
+        creat user object HTTP Methods Post
     """
     queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
+    serializer_class = UserCreatSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class UserUpdateViews(RetrieveUpdateAPIView):
+    """
+        Edit user object HTTP Methods POUT PATCH
+    """
+    queryset = CustomUser.objects.all()
+    serializer_class = UserUpdateSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     lookup_field = "pk"
