@@ -7,8 +7,8 @@ from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, Permi
 class BaseModel(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
-    user_created_date = models.DateTimeField(auto_now_add=True)
-    user_update_date = models.DateTimeField(auto_now=True)
+    # user_created_date = models.DateTimeField(auto_now_add=True)
+    # user_update_date = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
