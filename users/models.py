@@ -65,8 +65,8 @@ class CustomUser(BaseModel, AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     class Meta:
-        verbose_name = "کاربر"
-        verbose_name_plural = "کاربران"
+        verbose_name = "user"
+        verbose_name_plural = "users"
 
     def __str__(self):
         return self.email
