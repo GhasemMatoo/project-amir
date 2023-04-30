@@ -7,8 +7,8 @@ from users.models import CustomUser
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'email', 'first_name', 'last_name', 'created_date', 'update_date', 'user_created_date',
-                  'user_update_date', 'username'
+        fields = ['id', 'email', 'first_name', 'last_name', 'created_date', 'update_date',
+                  'username'
         ]
      
         
@@ -18,7 +18,7 @@ class UserCreatSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'email', 'first_name', 'last_name', 'username', 'password', 'Re_password', 'created_date',
-                  'update_date', 'user_created_date', 'user_update_date'
+                  'update_date',
         ]
 
     def validate(self, attrs):
@@ -40,7 +40,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'email', 'first_name', 'last_name', 'username', 'created_date',
-                  'update_date', 'user_created_date', 'user_update_date'
+                  'update_date',
         ]
 
     def update(self, instance, validated_data):
