@@ -1,7 +1,10 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework_simplejwt.views import TokenObtainPairView
 from users.models import CustomUser
-from .serializers import CustomUserSerializer, UserCreatSerializer, UserUpdateSerializer
+from .serializers import (CustomUserSerializer, UserCreatSerializer, UserUpdateSerializer,
+                          CustomTokenObtainPairSerializer
+                          )
 
 
 class UserListViews(ListAPIView):
@@ -10,7 +13,7 @@ class UserListViews(ListAPIView):
     """
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
 
 class UserCreatViews(CreateAPIView):
@@ -30,3 +33,7 @@ class UserUpdateViews(RetrieveUpdateAPIView):
     serializer_class = UserUpdateSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     lookup_field = "pk"
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
