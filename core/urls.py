@@ -22,23 +22,28 @@ from drf_yasg import openapi
 """
 set in drf-yasg 
 """
-schema_view = get_schema_view(
-   openapi.Info(
-      title="API",
-      default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="Matoogsm90@gmail.com"),
-      license=openapi.License(name="MIT License"),
-   ),
-   public=True,
-   permission_classes=[permissions.DjangoModelPermissions],
-)
+if settings.DEBUG:
+    schema_view = get_schema_view(
+       openapi.Info(
+          title="API",
+          default_version='v1',
+          description="Test description",
+          terms_of_service="https://www.google.com/policies/terms/",
+          contact=openapi.Contact(email="Matoogsm90@gmail.com"),
+          license=openapi.License(name="MIT License"),
+       ),
+       public=True,
+       permission_classes=[permissions.DjangoModelPermissions],
+    )
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include("users.urls")),
-    path('swagger/docs.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        path('swagger/docs.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+        path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    ]

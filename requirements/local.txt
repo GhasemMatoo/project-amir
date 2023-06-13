@@ -1,0 +1,32 @@
+-r base.txt
+
+Werkzeug[watchdog]==2.3.5
+ipdb==0.13.13
+psycopg2-binary==2.9.6
+
+# Testing
+# ------------------------------------------------------------------------------
+pytest==7.3.2
+pytest-sugar==0.9.7
+
+# Documentation
+# ------------------------------------------------------------------------------
+sphinx==6.2.1
+sphinx-autobuild==2021.3.14
+
+# Code quality
+# ------------------------------------------------------------------------------
+flake8==6.0.0
+flake8-isort==6.0.0
+coverage==7.2.7
+black==23.3.0
+pylint-django==2.5.3
+pre-commit==3.3.2
+
+# Django
+# ------------------------------------------------------------------------------
+factory-boy==3.2.1
+django-debug-toolbar==4.1.0
+django-extensions==3.2.3
+django-coverage-plugin==3.0.0
+pytest-django==4.5.2

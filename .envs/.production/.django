@@ -1,0 +1,17 @@
+# General
+# ------------------------------------------------------------------------------
+# DJANGO_READ_DOT_ENV_FILE=True
+DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_SECRET_KEY=django-insecure-rz6p5zk50snx90(p%=7@a_&5q7l&cr(tmp58p_d&2*p1c#t4(o
+DJANGO_ADMIN_URL=YE18b2RfhlHb9P556JM0MYAhTVlTvNs9/
+DJANGO_ALLOWED_HOSTS=.example.com
+
+# Security
+# ------------------------------------------------------------------------------
+# TIP: better off using DNS, however, redirect is OK too
+DJANGO_SECURE_SSL_REDIRECT=False
+
+# Gunicorn
+# ------------------------------------------------------------------------------
+WEB_CONCURRENCY=4
+
